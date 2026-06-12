@@ -1,0 +1,20 @@
+[project]
+name = "skill-plan-garden-maintenance"
+version = "0.1.0"
+description = "An Anthropic Agent Skill that turns garden photos + a location into a month-by-month maintenance plan, with an LLM-as-judge test suite."
+requires-python = ">=3.10"
+dependencies = [
+    "anthropic>=0.40",
+    "pydantic>=2",
+    "jsonschema>=4",
+    "python-dotenv>=1",
+    "pytest>=8",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["tests"]
+markers = [
+    "llm: test makes live Anthropic API calls (skipped when ANTHROPIC_API_KEY is unset)",
+]
+addopts = "-ra"

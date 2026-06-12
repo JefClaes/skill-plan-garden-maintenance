@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/garden-maintenance/plan.schema.json",
+  "title": "Garden maintenance plan",
+  "description": "Canonical machine-readable output of the garden-maintenance-planner skill. A downstream tool maps each task to a calendar event.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["location", "plants", "tasks"],
+  "properties": {
+    "location": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["input", "city", "country", "hardiness_zone", "frost_window"],
+      "properties": {
+        "input": { "type": "string" },
+        "city": { "type": "string" },
+        "country": { "type": "string" },
+        "hardiness_zone": { "type": "string" },
+        "frost_window": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["last_spring_frost", "first_autumn_frost"],
+          "properties": {
+            "last_spring_frost": { "type": "string" },
+            "first_autumn_frost": { "type": "string" }
+          }
+        }
+      }
+    },
+    "plants": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "common_name", "scientific_name", "type", "confidence", "notes"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^p[0-9]+$" },
+          "common_name": { "type": "string" },
+          "scientific_name": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": ["lawn", "hedge", "shrub", "perennial", "ornamental_grass", "tree", "climber", "groundcover", "bulb", "annual", "other"]
+          },
+          "confidence": { "type": "string", "enum": ["high", "medium", "low"] },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "tasks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "title", "plant_id", "category", "month", "recurrence", "instructions", "priority"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^t[0-9]+$" },
+          "title": { "type": "string" },
+          "plant_id": { "type": ["string", "null"] },
+          "category": {
+            "type": "string",
+            "enum": ["pruning", "fertilizing", "mowing", "planting", "pest", "watering", "mulching", "dividing", "cleanup", "protection"]
+          },
+          "month": {
+            "type": "string",
+            "enum": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+          },
+          "recurrence": { "type": "string", "enum": ["once", "monthly", "seasonal", "yearly"] },
+          "instructions": { "type": "string" },
+          "priority": { "type": "string", "enum": ["high", "medium", "low"] }
+        }
+      }
+    }
+  }
+}

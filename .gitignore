@@ -1,0 +1,18 @@
+# Secrets / local config
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+
+# Generated artifacts
+*.ics
+out/
+tests/_generated/
