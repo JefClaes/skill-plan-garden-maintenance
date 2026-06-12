@@ -39,16 +39,28 @@ Then, in a session, attach your garden photos and ask:
 ### 2. claude.ai
 
 A Skill is `SKILL.md` **plus** its `reference/` files — upload both, keeping `reference/`
-next to `SKILL.md` so the links resolve. Run `./package-skill.sh` to get an upload-ready
-artifact containing only the skill (not the test harness):
+next to `SKILL.md` so the links resolve.
+
+The easiest way is to grab the pre-packaged zip from the
+[**Releases**](https://github.com/JefClaes/skill-plan-garden-maintenance/releases) page —
+each release attaches `garden-maintenance-planner.zip`, containing only the skill (not the
+test harness). The artifact carries a GitHub **build-provenance attestation**, so you can
+verify it was built from the tagged source by this repo's workflow:
+
+```bash
+gh attestation verify garden-maintenance-planner.zip \
+  --repo JefClaes/skill-plan-garden-maintenance
+```
+
+Prefer to build it yourself? Run `./package-skill.sh` to produce the same artifact locally:
 
 ```
 dist/garden-maintenance-planner/       # the folder
 dist/garden-maintenance-planner.zip    # same, zipped
 ```
 
-Upload that folder/zip as a Skill in your workspace, attach the photos, and ask the same
-question.
+Either way, upload that folder/zip as a Skill in your workspace, attach the photos, and ask
+the same question.
 
 ### 3. API / your own app
 
