@@ -27,7 +27,7 @@ jobs:
           python-version: "3.12"
 
       - name: Package the skill
-        run: ./package-skill.sh
+        run: bash package-skill.sh
 
       - name: Attest build provenance
         uses: actions/attest-build-provenance@v2
