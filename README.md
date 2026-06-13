@@ -23,25 +23,9 @@ tests/                        LLM-as-judge + schema tests (pytest)
 
 The skill is a standard Agent Skill (a folder with a `SKILL.md`). Three ways to use it:
 
-### 1. Claude Code
+### Getting the skill
 
-Copy this folder into your skills directory and Claude Code will load it automatically
-when a request matches the skill's description:
-
-- Personal: `~/.claude/skills/garden-maintenance-planner/`
-- Project: `<your-project>/.claude/skills/garden-maintenance-planner/`
-
-Then, in a session, attach your garden photos and ask:
-
-> Here are photos of my garden. I'm in Geel, Belgium — give me a month-by-month
-> maintenance plan.
-
-### 2. claude.ai
-
-A Skill is `SKILL.md` **plus** its `reference/` files — upload both, keeping `reference/`
-next to `SKILL.md` so the links resolve.
-
-The easiest way is to grab the pre-packaged zip from the
+Grab the pre-packaged zip from the
 [**Releases**](https://github.com/JefClaes/skill-plan-garden-maintenance/releases) page —
 each release attaches `garden-maintenance-planner.zip`, containing only the skill (not the
 test harness). The artifact carries a GitHub **build-provenance attestation**, so you can
@@ -59,8 +43,23 @@ dist/garden-maintenance-planner/       # the folder
 dist/garden-maintenance-planner.zip    # same, zipped
 ```
 
-Either way, upload that folder/zip as a Skill in your workspace, attach the photos, and ask
-the same question.
+### 1. Claude Code
+
+Unzip and copy the folder into your skills directory — Claude Code will load it automatically
+when a request matches the skill's description:
+
+- Personal: `~/.claude/skills/garden-maintenance-planner/`
+- Project: `<your-project>/.claude/skills/garden-maintenance-planner/`
+
+Then, in a session, attach your garden photos and ask:
+
+> Here are photos of my garden. I'm in Geel, Belgium — give me a month-by-month
+> maintenance plan.
+
+### 2. claude.ai
+
+Upload the folder/zip as a Skill in your workspace, attach the photos, and ask the same
+question.
 
 ### 3. API / your own app
 
